@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./myToken.sol";
 
-contract Lottery is VRFConsumerBase, Ownable {
+contract simpleLottery is VRFConsumerBase, Ownable {
 
     address payable[] public players;
     address payable public recentWinner;
