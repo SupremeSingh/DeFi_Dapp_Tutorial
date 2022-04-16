@@ -57,7 +57,7 @@ contract simpleLottery is VRFConsumerBase, Ownable {
     }
 
     function startLottery(uint256 _amount) public payable onlyOwner isInCorrectState(LOTTERY_STATE.CLOSED){
-        require(awardAmount < 0, "Value has already been set");
+        require(awardAmount <= 0, "Value has already been set");
         require(msg.value >= _amount, "Insufficient Ether Transferred");
         awardAmount = _amount;
         lottery_state = LOTTERY_STATE.OPEN;

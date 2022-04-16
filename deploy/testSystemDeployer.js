@@ -56,10 +56,6 @@ module.exports = async ({
     await mockVendor.addTokensToWhitelist(myWETH.address);
     await mockVendor.loadContractWithEth(SMALL_BALANCE, {value: SMALL_BALANCE});
 
-    log("--------------------- Making A Liquidity Position for Tokens ----------------------")
-
-
-    
     log("--------------------- Deploying The Lottery Contract ----------------------")
 
     const MockLottery = await ethers.getContractFactory("simpleLottery");
@@ -67,6 +63,10 @@ module.exports = async ({
     await mockLottery.deployed();
 
     await myToken.approve(mockLottery.address, GIANT_BALANCE);
+
+    log("--------------------- Setting up the lottery ----------------------")
+
+    await mockLottery.startLottery(SMALL_BALANCE, {value: SMALL_BALANCE}); 
 
     log("--------------------- Just Checking Up To Here ----------------------")
         
@@ -78,8 +78,11 @@ module.exports = async ({
     log("Token Vendor deployed at:\t" + mockVendor.address);
     log("Lottery Contract deployed at:\t" + mockLottery.address);
 
+    log("Lottery is in a state of:\t" + await mockLottery.lottery_state());
+    log("Total prize of:\t" + await mockLottery.awardAmount());
+    log("Submit:\t" + await mockLottery.awardAmount() + "\t MTN Tokens to Play");
+  
     log("Verify above addresses with: npx hardhat verify --network <network> DEPLOYED_CONTRACT_ADDRESS <'Constructor argument 1'>")
-
 
     log("--------------------- Yowza - everything is now set up ----------------------")
 
