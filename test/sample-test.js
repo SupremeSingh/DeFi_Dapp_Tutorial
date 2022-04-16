@@ -1,59 +1,70 @@
-import { BigNumber } from 'ethers'
-import chai, { expect } from 'chai'
-import { Contract, Wallet, providers } from 'ethers'
-import { solidity, deployContract } from 'ethereum-waffle'
-import { ethers, waffle, network, deployments } from 'hardhat'
-import { Fixture } from 'ethereum-waffle'
+import { BigNumber } from "ethers";
+import chai, { expect } from "chai";
+import { Contract, Wallet, providers } from "ethers";
+import { solidity, deployContract } from "ethereum-waffle";
+import { ethers, waffle, network, deployments } from "hardhat";
+import { Fixture } from "ethereum-waffle";
 
-describe("Token contract", function () {
-  it("Deployment should assign the total supply of tokens to the owner", async function () {
-    const [owner] = await ethers.getSigners();
+describe("A Sample Lottery", function () {
 
-    const Token = await ethers.getContractFactory("myToken");
+  before(async function () {
 
-    const hardhatToken = await Token.deploy();
+    Token = await ethers.getContractFactory("Token");
+    [deployer, addr1, addr2, ...addrs] = await ethers.getSigners();
 
-    const ownerBalance = await hardhatToken.balanceOf(owner.address);
-    expect(await hardhatToken.totalSupply()).to.equal(ownerBalance);
+    // DEPLOY ALL THE CONTRACTS HERE, LIKE DEPLOY FILE 
   });
-});
 
-describe("Swapping contract", function () {
-  it("Deployment should assign the total supply of tokens to the owner", async function () {
-    const [owner] = await ethers.getSigners();
 
-    const Token = await ethers.getContractFactory("myToken");
+  describe("Token contract", function () {
+    it("Deployment should assign the total supply of tokens to the owner", async function () {
+      const [owner] = await ethers.getSigners();
 
-    const hardhatToken = await Token.deploy();
+      const Token = await ethers.getContractFactory("myToken");
 
-    const ownerBalance = await hardhatToken.balanceOf(owner.address);
-    expect(await hardhatToken.totalSupply()).to.equal(ownerBalance);
+      const hardhatToken = await Token.deploy();
+
+      const ownerBalance = await hardhatToken.balanceOf(owner.address);
+      expect(await hardhatToken.totalSupply()).to.equal(ownerBalance);
+    });
   });
-});
 
+  describe("Swapping contract", function () {
+    it("Deployment should assign the total supply of tokens to the owner", async function () {
+      const [owner] = await ethers.getSigners();
 
-describe("Vendor contract", function () {
-  it("Deployment should assign the total supply of tokens to the owner", async function () {
-    const [owner] = await ethers.getSigners();
+      const Token = await ethers.getContractFactory("myToken");
 
-    const Token = await ethers.getContractFactory("myToken");
+      const hardhatToken = await Token.deploy();
 
-    const hardhatToken = await Token.deploy();
-
-    const ownerBalance = await hardhatToken.balanceOf(owner.address);
-    expect(await hardhatToken.totalSupply()).to.equal(ownerBalance);
+      const ownerBalance = await hardhatToken.balanceOf(owner.address);
+      expect(await hardhatToken.totalSupply()).to.equal(ownerBalance);
+    });
   });
-});
 
-describe("Lottery contract", function () {
-  it("Deployment should assign the total supply of tokens to the owner", async function () {
-    const [owner] = await ethers.getSigners();
+  describe("Vendor contract", function () {
+    it("Deployment should assign the total supply of tokens to the owner", async function () {
+      const [owner] = await ethers.getSigners();
 
-    const Token = await ethers.getContractFactory("myToken");
+      const Token = await ethers.getContractFactory("myToken");
 
-    const hardhatToken = await Token.deploy();
+      const hardhatToken = await Token.deploy();
 
-    const ownerBalance = await hardhatToken.balanceOf(owner.address);
-    expect(await hardhatToken.totalSupply()).to.equal(ownerBalance);
+      const ownerBalance = await hardhatToken.balanceOf(owner.address);
+      expect(await hardhatToken.totalSupply()).to.equal(ownerBalance);
+    });
+  });
+
+  describe("Lottery contract", function () {
+    it("Deployment should assign the total supply of tokens to the owner", async function () {
+      const [owner] = await ethers.getSigners();
+
+      const Token = await ethers.getContractFactory("myToken");
+
+      const hardhatToken = await Token.deploy();
+
+      const ownerBalance = await hardhatToken.balanceOf(owner.address);
+      expect(await hardhatToken.totalSupply()).to.equal(ownerBalance);
+    });
   });
 });
