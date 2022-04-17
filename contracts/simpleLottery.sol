@@ -29,6 +29,11 @@ contract simpleLottery is VRFConsumerBase, Ownable {
         _;
     }
 
+    modifier isNotOwner() {
+        require(msg.sender != owner(), "Owner cannot enter");
+        _;
+    }
+
     uint256 public randomness;
     uint256 public fee;
     bytes32 public keyhash;
@@ -51,7 +56,7 @@ contract simpleLottery is VRFConsumerBase, Ownable {
         keyhash = _keyhash;
     }
 
-    function enter() public payable isInCorrectState(LOTTERY_STATE.OPEN){
+    function enter() public isInCorrectState(LOTTERY_STATE.OPEN) isNotOwner() {
         myTokenInstance.transferFrom(msg.sender, address(this), ENTRY_COST);
         players.push(payable(msg.sender));
     }
@@ -85,5 +90,9 @@ contract simpleLottery is VRFConsumerBase, Ownable {
         awardAmount = 0;
         lottery_state = LOTTERY_STATE.CLOSED;
         randomness = _randomness;
+    }
+
+    function getNimberOfPlayers() external view returns(uint256 _numberOfPlayers) {
+        _numberOfPlayers = players.length;
     }
 }
