@@ -4,7 +4,7 @@
 
 **Roadmap –** 
 
-This is an example of how you can build your own solidity repos as suggested by me in https://tinyurl.com/dblinfo. Build a solidity project that allows the deployer to launch their own token, be able to decide which other tokens they want to trade them against, make trades with those tokens on the latest version of Uniswap and manage their liquidity as well. 
+This is an example of how you can build your own solidity repos as suggested by me in https://tinyurl.com/dblinfo. We will build a solidity project that allows the deployer to launch their own token, be able to decide which other tokens they want to trade them against, make trades with those tokens on the latest version of Uniswap and manage their liquidity as well. 
 
 As an application of that token, buyers can use them to enter a lottery out of which they stand to win a large amount of (testnet) ETH. The entry price of award amount can be set by the owner.
 
